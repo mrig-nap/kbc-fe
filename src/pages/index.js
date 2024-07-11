@@ -19,7 +19,7 @@ export default function Home() {
   const [openName, setOpenName] = useState(false);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io(process.env.NEXT_PUBLIC_SERVER_URL);
     setSocket(socket)
 
     socket.on("connect", () => {
