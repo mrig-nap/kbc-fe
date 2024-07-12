@@ -1,0 +1,242 @@
+[
+  {
+      "category": "Indian Temples",
+      "question": "Which Indian temple is dedicated to Lord Venkateswara?",
+      "options": ["Tirupati Balaji", "Somnath Temple", "Golden Temple", "Meenakshi Temple"],
+      "answer": "Tirupati Balaji"
+  },
+  {
+      "category": "Nature",
+      "question": "What is the largest rainforest in the world?",
+      "options": ["Amazon Rainforest", "Congo Rainforest", "Daintree Rainforest", "Taiga"],
+      "answer": "Amazon Rainforest"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird is known for its distinctive long, curved beak?",
+      "options": ["Toucan", "Pelican", "Hummingbird", "Woodpecker"],
+      "answer": "Toucan"
+  },
+  {
+      "category": "Cars",
+      "question": "Which car manufacturer produces the Mustang model?",
+      "options": ["Ford", "Chevrolet", "Toyota", "Honda"],
+      "answer": "Ford"
+  },
+  {
+      "category": "Technology",
+      "question": "What does CPU stand for in computing?",
+      "options": ["Central Processing Unit", "Central Power Unit", "Computer Processing Unit", "Core Processing Unit"],
+      "answer": "Central Processing Unit"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Where is the Lotus Temple located in India?",
+      "options": ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+      "answer": "Delhi"
+  },
+  {
+      "category": "Nature",
+      "question": "Which mountain is the tallest in the world?",
+      "options": ["Mount Everest", "K2", "Kangchenjunga", "Makalu"],
+      "answer": "Mount Everest"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird is the national bird of India?",
+      "options": ["Peacock", "Parrot", "Sparrow", "Pigeon"],
+      "answer": "Peacock"
+  },
+  {
+      "category": "Cars",
+      "question": "Which luxury car brand has a model called 'Aventador'?",
+      "options": ["Lamborghini", "Ferrari", "Bugatti", "Maserati"],
+      "answer": "Lamborghini"
+  },
+  {
+      "category": "Technology",
+      "question": "What type of memory is non-volatile and retains its data even when powered off?",
+      "options": ["Flash Memory", "RAM", "Cache Memory", "ROM"],
+      "answer": "ROM"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple is known as the Sun Temple of India?",
+      "options": ["Konark Sun Temple", "Kedarnath Temple", "Sun Temple, Modhera", "Sun Temple, Gwalior"],
+      "answer": "Konark Sun Temple"
+  },
+  {
+      "category": "Nature",
+      "question": "Which is the longest river in the world?",
+      "options": ["Nile", "Amazon", "Yangtze", "Mississippi"],
+      "answer": "Nile"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird is capable of flying backwards?",
+      "options": ["Hummingbird", "Eagle", "Penguin", "Ostrich"],
+      "answer": "Hummingbird"
+  },
+  {
+      "category": "Cars",
+      "question": "Which car brand uses the slogan 'The Ultimate Driving Machine'?",
+      "options": ["BMW", "Mercedes-Benz", "Audi", "Lexus"],
+      "answer": "BMW"
+  },
+  {
+      "category": "Technology",
+      "question": "What does GPS stand for?",
+      "options": ["Global Positioning System", "Global Postal Service", "Graphical Positioning System", "Geographical Positioning System"],
+      "answer": "Global Positioning System"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple complex is known for its erotic sculptures?",
+      "options": ["Khajuraho Temples", "Ellora Caves", "Hampi Monuments", "Ajanta Caves"],
+      "answer": "Khajuraho Temples"
+  },
+  {
+      "category": "Nature",
+      "question": "Which animal is known as the 'King of the Jungle'?",
+      "options": ["Lion", "Tiger", "Leopard", "Cheetah"],
+      "answer": "Lion"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird species is known for its ability to mimic human speech?",
+      "options": ["Parrot", "Crow", "Pigeon", "Owl"],
+      "answer": "Parrot"
+  },
+  {
+      "category": "Cars",
+      "question": "Which electric car company is known for its Model S, Model 3, and Model X?",
+      "options": ["Tesla", "Nissan", "Chevrolet", "Toyota"],
+      "answer": "Tesla"
+  },
+  {
+      "category": "Technology",
+      "question": "Which social media platform is known for its disappearing 'Stories' feature?",
+      "options": ["Snapchat", "Instagram", "Facebook", "Twitter"],
+      "answer": "Snapchat"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple in Kerala is dedicated to Lord Ayyappa?",
+      "options": ["Sabarimala Temple", "Padmanabhaswamy Temple", "Guruvayur Temple", "Chottanikkara Temple"],
+      "answer": "Sabarimala Temple"
+  },
+  {
+      "category": "Nature",
+      "question": "What is the largest mammal in the world?",
+      "options": ["Blue Whale", "Elephant", "Giraffe", "Hippopotamus"],
+      "answer": "Blue Whale"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird species is known for its flamboyant courtship dance?",
+      "options": ["Peacock", "Swan", "Flamingo", "Albatross"],
+      "answer": "Peacock"
+  },
+  {
+      "category": "Cars",
+      "question": "Which Japanese car brand has a model called 'Civic'?",
+      "options": ["Honda", "Toyota", "Nissan", "Mitsubishi"],
+      "answer": "Honda"
+  },
+  {
+      "category": "Technology",
+      "question": "Which company developed the Android operating system?",
+      "options": ["Google", "Apple", "Microsoft", "Samsung"],
+      "answer": "Google"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple is dedicated to Goddess Meenakshi and located in Tamil Nadu?",
+      "options": ["Meenakshi Amman Temple", "Kamakhya Temple", "Akshardham Temple", "Vaishno Devi Temple"],
+      "answer": "Meenakshi Amman Temple"
+  },
+  {
+      "category": "Nature",
+      "question": "Which desert is the largest in the world?",
+      "options": ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Kalahari Desert"],
+      "answer": "Sahara Desert"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird is known for its long, thin legs and long neck?",
+      "options": ["Heron", "Penguin", "Duck", "Ostrich"],
+      "answer": "Heron"
+  },
+  {
+      "category": "Cars",
+      "question": "Which Italian car manufacturer produces the 488 model?",
+      "options": ["Ferrari", "Lamborghini", "Maserati", "Alfa Romeo"],
+      "answer": "Ferrari"
+  },
+  {
+      "category": "Technology",
+      "question": "Which computer programming language is often used for artificial intelligence and machine learning?",
+      "options": ["Python", "Java", "C++", "Ruby"],
+      "answer": "Python"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple is known as the 'Golden Temple'?",
+      "options": ["Harmandir Sahib", "Kashi Vishwanath Temple", "Dwarkadhish Temple", "Somnath Temple"],
+      "answer": "Harmandir Sahib"
+  },
+  {
+      "category": "Nature",
+      "question": "What is the world's largest coral reef system?",
+      "options": ["Great Barrier Reef", "Belize Barrier Reef", "Red Sea Coral Reef", "Maldives Coral Reef"],
+      "answer": "Great Barrier Reef"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird species is known for its ability to imitate human speech and other sounds?",
+      "options": ["Parrot", "Robin", "Eagle", "Seagull"],
+      "answer": "Parrot"
+  },
+  {
+      "category": "Cars",
+      "question": "Which German car manufacturer produces the Golf model?",
+      "options": ["Volkswagen", "Mercedes-Benz", "BMW", "Audi"],
+      "answer": "Volkswagen"
+  },
+  {
+      "category": "Technology",
+      "question": "Which tech company's slogan is 'Think Different'?",
+      "options": ["Apple", "Google", "Microsoft", "Amazon"],
+      "answer": "Apple"
+  },
+  {
+      "category": "Indian Temples",
+      "question": "Which temple is known for its annual Rath Yatra or chariot festival?",
+      "options": ["Jagannath Temple", "Ramanathaswamy Temple", "Vaishno Devi Temple", "Badrinath Temple"],
+      "answer": "Jagannath Temple"
+  },
+  {
+      "category": "Nature",
+      "question": "Which is the largest tree species on Earth by volume?",
+      "options": ["Sequoia", "Oak", "Pine", "Eucalyptus"],
+      "answer": "Sequoia"
+  },
+  {
+      "category": "Birds",
+      "question": "Which bird is known for its spectacular courtship dance involving bowing and rattling feathers?",
+      "options": ["Great Bustard", "Capercaillie", "Brolga", "Sage Grouse"],
+      "answer": "Sage Grouse"
+  },
+  {
+      "category": "Cars",
+      "question": "Which British car manufacturer produces the DB11 model?",
+      "options": ["Aston Martin", "Rolls-Royce", "Jaguar", "Bentley"],
+      "answer": "Aston Martin"
+  },
+  {
+      "category": "Technology",
+      "question": "Which company developed the Windows operating system?",
+      "options": ["Microsoft", "Apple", "Google", "Linux Foundation"],
+      "answer": "Microsoft"
+  }
+]
