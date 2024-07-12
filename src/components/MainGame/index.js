@@ -130,12 +130,12 @@ export default function MainGame({socket, allPlayers}) {
   return (
     <div id="game-screen2" className="flex min-h-screen bg-gray-100 hidden">
       <div className="w-64 p-4 bg-purple-700 text-white">
-        <div className="flex justify-around mb-4">
+        {/* <div className="flex justify-around mb-4">
           <UsersIcon className="w-8 h-8" />
           <PercentIcon className="w-8 h-8" />
           <RefreshCwIcon className="w-8 h-8" />
           <TrophyIcon className="w-8 h-8" />
-        </div>
+        </div> */}
         <div className="space-y-2">
           {stages.map(stage => (
             <div key={stage.id} className={`flex justify-between px-2 ${stage.id === questionCount ? " border-2" : ""}`}>

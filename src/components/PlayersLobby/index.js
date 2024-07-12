@@ -43,7 +43,7 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
   };
 
 	const DrawerList = (
-		<Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
+		<Box sx={{ width: 400 }} role="presentation" onClick={toggleDrawer(false)}>
 			<Box sx={{position: "absolute", top: 0,  height: '100%', width: '100%', padding: '36px', borderRight: '1px solid #ccc', bgcolor: '#f0f0f0' }}>
       	<Typography variant="h5">Game Rules</Typography>
 				<ul class="list-decimal ml-8 space-y-4">
@@ -81,14 +81,13 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
 				// onClose={handleClose}
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
-			>
+			>  
 				<Box sx={style}>
-					<Typography className='pb-5'>
+				<h2 className='text-black text-10xl font-bold pb-5'>Waiting for players to join....</h2>
+				<Typography className='pb-5'>
 						Room ID: {allPlayers[0]?.roomID || ""}
 					</Typography>
-					<Typography className='pb-5' id="modal-modal-title" variant="h6" component="h2">
-						Waiting for players to join....
-					</Typography>
+					
 					{allPlayers.length > 0 && allPlayers.map((player, index) => (
 						<Box
 							key={index}
@@ -107,14 +106,14 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
 						</Box>
 					))}
 					<div className='mt-5'>
-						<Button style={!currentPlayer?.host ? {display: "none"} : {width: "100%"}} variant="contained" color="success" onClick={() => handleGameStartClick()}>
+						<Button  className='btnColor'  style={!currentPlayer?.host ? {display: "none"} : {width: "100%"}} variant="contained" color="success" onClick={() => handleGameStartClick()}>
 							Start the game
 						</Button>
 						<p className='mt-5 text-center'><a href='#' onClick={() => setDrawer(drawer => !drawer)}>Rules {">>>"}</a></p>
 					</div>
-					<div className='mt-5 text-sm italic'>
+					<div className='mt-5 text-sm italic font-sans'>
 						<div><span className='font-bold'>Next Round:</span> Fastest Finger First</div>
-						<div><span className='font-bold'>Tip:</span> Answer as fast as possible. The first player with most correct answer in least time will be the winner.</div>
+						<div><span className='font-bold'>Tips:</span> Answer as fast as possible. The first player with most correct answer in least time will be the winner.</div>
 					</div>
 				</Box>
 			</Modal>
