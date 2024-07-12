@@ -22,6 +22,7 @@ export default function BasicModal({socket, allPlayers}) {
   console.log(currentPlayer)
 
   socket.on("game-started", () => {
+    setPopupVisible(false)
     document.getElementById("game-screen").style.display = "flex";
     startGame()
     setQuestionCount(1)
@@ -132,7 +133,7 @@ export default function BasicModal({socket, allPlayers}) {
   }
 
   const handleNextRoundClick = () => {
-    socket.emit("next-round");
+    socket.emit("next-round", currentPlayer?.roomID);
     document.getElementById("game-screen").style.display = "none";
     document.getElementById("main-game-screen").style.display = "flex";
   }

@@ -47,7 +47,7 @@ export default function JoinGameModal({socket, setOpenLobby}) {
   }
 
 	return (
-		<div>
+		<div className="">
 			<Modal
 				open={open}
 				// onClose={handleClose}
@@ -55,9 +55,21 @@ export default function JoinGameModal({socket, setOpenLobby}) {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography className='pb-5' id="modal-modal-title" variant="h6" component="h2">
-						Welcome to Kaun Banega Crorepati!
-					</Typography>
+				
+				<div className="relative w-full">
+					<img
+						src="/assets/logo.png"
+						alt="Logo"
+						width={200}
+						height={200}
+						className="LogoKBC "
+					/>
+					 </div>
+					 <p className="mt-4 font-bold text-lg   lg:text-2xl align-center">
+					 Welcome<br></br> to 
+          				</p>
+					<h1 className="text-5xl font-bold text-black sm:text-5xl lg:text-3xl align-center headingKBC">Kaun Banega Crorepati</h1>
+					<p></p>
           <Box
 						sx={{
 							width: 500,
@@ -67,7 +79,7 @@ export default function JoinGameModal({socket, setOpenLobby}) {
 						<TextField placeholder='Enter your name' onChange={(e) => setName(e.target.value)} fullWidth id="fullWidth" />
 					</Box>
           <div className='mt-2 text-center mb-4'>
-						<Button variant="contained" onClick={() => handleCreateGame()}>Create Game</Button>
+						<Button className='btnColor' variant="contained" onClick={() => handleCreateGame()}>Create Game</Button>
 					</div>
           <Divider>OR</Divider>
 					<Box
@@ -82,10 +94,11 @@ export default function JoinGameModal({socket, setOpenLobby}) {
 						<TextField placeholder='Enter Room ID' onChange={(e) => setRoomId(e.target.value)} fullWidth id="fullWidth" />
 					</Box>
 					<div className='mt-2 text-center'>
-						<Button variant="contained" onClick={() => handleJoinGame()}>Join Game</Button>
+						<Button className='btnColor' variant="contained" onClick={() => handleJoinGame()}>Join Game</Button>
 					</div>
 				</Box>
 			</Modal>
+			
 		</div>
 	);
 }

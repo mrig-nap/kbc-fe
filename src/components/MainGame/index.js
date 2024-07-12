@@ -6,11 +6,12 @@ import questions from '../../../data/main-questions.json';
  * @see https://v0.dev/t/34S4svLpjzX
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-export default function MainGame() {
+export default function MainGame({socket, allPlayers}) {
   const [seconds, setSeconds] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [modalBody, setModalBody] = useState("Are you ready ?")
   const audioRef = useRef(null);
+  const [questionCount, setQuestionCount] = useState(1);
 
   const [isPopupVisible, setPopupVisible] = useState(false);
 
@@ -22,6 +23,36 @@ export default function MainGame() {
     setPopupVisible(false);
     play()
   };
+
+  socket.on("next-round-started", () => {
+    startGame()
+  })
+
+  const startGame = () => {
+    setCurrentQuestion(questions[Math.floor(Math.random() * questions.length)])
+    setSeconds(60)
+  }
+
+  const nextQuestion = () => {
+    setQuestionCount(prevCount => prevCount + 1)
+    startGame()
+  }
+
+  useEffect(() => {
+    // Exit early when timer reaches 0
+    if (seconds === 0){
+      nextQuestion()
+      return;
+    }
+
+    // Decrease seconds by 1 after 1 second
+    const timer = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+    // Clean up the interval on component unmount or when seconds reach 0
+    return () => clearInterval(timer);
+  }, [seconds]); // Re-run the effect when seconds state changes
 
   useEffect(() => {
     document.getElementById("main-game-screen").style.display = "none";
@@ -36,20 +67,33 @@ export default function MainGame() {
     }
   }
 
-  console.log(currentQuestion)
+  const resetOptions = (i) => {
+    document.getElementById("option"+i).classList.remove("bg-red-500")
+    document.getElementById("option"+i).classList.remove("bg-green-500")
+    document.getElementById("option"+i).classList.add("bg-purple-700")
+    document.getElementById("option"+i).classList.add("hover:bg-purple-500")
+  }
 
   const handleOptionClick = (option, question) => {
     if(option.split(":")[0] === question.correct_answer){
+      document.getElementById("option"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
       document.getElementById("option"+option.split(":")[0]).classList.remove("bg-purple-700")
       document.getElementById("option"+option.split(":")[0]).classList.add("bg-green-500")
+      // socket.emit("fff-response", currentPlayer, responseTime, true, questionCount)
     } else {
+      document.getElementById("option"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
       document.getElementById("option"+option.split(":")[0]).classList.add("bg-red-500")
       document.getElementById("option"+option.split(":")[0]).classList.remove("bg-purple-700")
-      document.getElementById("option"+question.correct_answer).classList.add("bg-green-700")
-      setTimeout(() => {
-        setModalBody("Apka Safar Yahi Tak Tha! See you next Season.")
-        setPopupVisible(true)
-      }, 2000);
+      document.getElementById("option"+question.answer.split(":")[0]).classList.add("bg-green-700")
+      // socket.emit("fff-response", currentPlayer, responseTime, false, questionCount)
+    }
+    resetOptions(option.split(":")[0])
+    if(questionCount === 10){
+      setModalBody("Round Over! Check Leaderboard for your score.")
+      setPopupVisible(true);
+      setSeconds(0)
+    } else {
+      nextQuestion()
     }
   }
 
@@ -130,6 +174,7 @@ export default function MainGame() {
         </div>
       </div>
       <div className="flex-1 p-4">
+      <div className='flex justify-center mb-4 text-2xl'>Question: {questionCount} / 10</div>
         <div className="flex justify-center mb-4">
           <div className="relative flex items-center justify-center w-16 h-16 bg-purple-700 rounded-full">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-red-400" />
