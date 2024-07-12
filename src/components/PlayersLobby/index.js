@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -17,10 +17,12 @@ const style = {
 };
 
 export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLobby }) {
-	const [name, setName] = React.useState("")
+	const [name, setName] = useState("");
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
+	const currentPlayer = allPlayers.find(player => player.socketId === socket.id) || null;
+	console.log(currentPlayer)
 	const handleReadyClick = (player) => {
 		player.ready = !player.ready
 		socket.emit("update-player", player)
@@ -67,9 +69,13 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
 						</Box>
 					))}
 					<div className='mt-5'>
-						<Button style={{width: "100%"}} variant="contained" color="success" onClick={() => handleGameStartClick()}>
+						<Button style={!currentPlayer?.host ? {display: "none"} : {width: "100%"}} variant="contained" color="success" onClick={() => handleGameStartClick()}>
 							Start the game
 						</Button>
+					</div>
+					<div className='mt-5 text-sm italic'>
+						<div><span className='font-bold'>Next Round:</span> Fastest Finger First</div>
+						<div><span className='font-bold'>Tip:</span> Answer as fast as possible. The first player with most correct answer in least time will be the winner.</div>
 					</div>
 				</Box>
 			</Modal>

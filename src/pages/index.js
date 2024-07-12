@@ -8,6 +8,7 @@ import PlayersLobby from "@/components/PlayersLobby";
 import FastestFingerFirst from "@/components/FastestFingerFirst";
 import MessageBox from "@/components/MessageBox";
 import JoinGameModal from "@/components/JoinGameModal";
+import WinnerSelection from "@/components/WinnerSelection";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -45,7 +46,7 @@ export default function Home() {
   return (
     <main className="background">
       <JoinGameModal socket={socket} setOpenLobby={setOpenLobby} />
-      {/* <NameModal socket={socket} openName={openName} setOpenName={setOpenName} /> */}
+      <WinnerSelection socket={socket} allPlayers={joinedPlayers} />
       <PlayersLobby socket={socket} allPlayers={joinedPlayers} openLobby={openLobby} setOpenLobby={setOpenLobby} />
       <MessageBox socket={socket} allPlayers={joinedPlayers} />
       <FastestFingerFirst socket={socket} allPlayers={joinedPlayers} />

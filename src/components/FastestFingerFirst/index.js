@@ -41,6 +41,8 @@ export default function BasicModal({socket, allPlayers}) {
   socket.on("game-started", () => {
     document.getElementById("game-screen").style.display = "flex";
     startGame()
+    setQuestionCount(1)
+    play()
   })
 
   socket.on("fff-response-update", newResponse => {
@@ -58,8 +60,17 @@ export default function BasicModal({socket, allPlayers}) {
   }
 
   useEffect(() => {
+    if(questionCount === 10 && seconds === 0){
+      stopTimer()
+      setModalBody("Round Over! Check Leaderboard for results.")
+      setPopupVisible(true)
+      return;
+    }
+
     // Exit early when timer reaches 0
     if (seconds === 0){
+      stopTimer()
+      nextQuestion()
       return;
     }
 
@@ -102,6 +113,14 @@ export default function BasicModal({socket, allPlayers}) {
     document.getElementById("option"+i).classList.add("hover:bg-purple-500")
   }
 
+  const play = () => {
+    if (audioRef.current) {
+      audioRef.current.play()
+    } else {
+      console.log("error")
+    }
+  }
+
   const handleOptionClick = (option, question) => {
     stopTimer()
     if(option.split(":")[0] === question.correct_answer){
@@ -118,7 +137,7 @@ export default function BasicModal({socket, allPlayers}) {
     }
     resetOptions(option.split(":")[0])
     if(questionCount === 10){
-      setModalBody("Round Over! Check Leaderboard for your score. Do try our exclusive CHAT feature.")
+      setModalBody("Round Over! Check Leaderboard for your score.")
       setPopupVisible(true);
       setSeconds(0)
     } else {
@@ -128,7 +147,7 @@ export default function BasicModal({socket, allPlayers}) {
 
 	return (
 		<div id="game-screen" className="flex min-h-screen bg-gray-100 hidden">
-      <div className="w-64 p-4 bg-purple-700 text-white">
+      <div className="w-80 p-4 bg-purple-700 text-white">
         <div className="flex mb-4">
           <LeaderboardIcon />
           <h2 className="ml-4">Leaderboard</h2>
@@ -147,8 +166,8 @@ export default function BasicModal({socket, allPlayers}) {
                 }}
               >
                 <div className='w-2 h-2 rounded-full bg-green-500 mr-6 ml-2'></div>
-                <div>{player.name}</div>
-                <div className='ml-10'>{player.correct +"/" + player.totalQuestions}</div>
+                <div className='min-w-40'>{player.name}</div>
+                <div className='ml-2'>{player.correct +"/" + player.totalQuestions}</div>
                 <div className='ml-auto'>{player.responseTime}s</div>
               </Box>
             ))}
@@ -156,10 +175,9 @@ export default function BasicModal({socket, allPlayers}) {
         
       </div>
       <div id="question-screen" className="flex-1 p-4">
+          <div className='flex justify-center mb-4 text-2xl'>Question: {questionCount} / 10</div>
         <div className="flex justify-center mb-4">
           <div className="relative flex items-center justify-center w-16 h-16 bg-purple-700 rounded-full">
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-red-400" />
-            <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-red-400 to-green-400" />
             <span className="text-2xl font-bold text-white">{seconds}</span>
           </div>
         </div>
@@ -167,7 +185,7 @@ export default function BasicModal({socket, allPlayers}) {
         <audio
           style={{display: "none"}}
           ref={audioRef}
-          controls
+          loop={false}
           src="/audio/kbc_intro_audio.mp3">
               Your browser does not support the
               <code>audio</code> element.

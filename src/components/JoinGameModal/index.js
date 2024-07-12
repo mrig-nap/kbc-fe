@@ -22,6 +22,7 @@ const style = {
 export default function JoinGameModal({socket, setOpenLobby}) {
 	const [roomId, setRoomId] = useState("")
   const [name, setName] = useState("")
+  const [name1, setName1] = useState("")
 	const [open, setOpen] = useState(true);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -31,16 +32,16 @@ export default function JoinGameModal({socket, setOpenLobby}) {
     if(name === ""){
 			return;
 		}
-		socket.emit("join-room", name, socket.id, roomID)
+		socket.emit("join-room", name, socket.id, roomID, true)
 		handleClose()
 		setOpenLobby(true)
 	}
 
   const handleJoinGame = () => {
-    if(roomId === "" || name === ""){
+    if(roomId === "" || name1 === ""){
 			return;
 		}
-    socket.emit("join-room", name, socket.id, roomId)
+    socket.emit("join-room", name1, socket.id, roomId, false)
     handleClose()
     setOpenLobby(true)
   }
@@ -76,6 +77,8 @@ export default function JoinGameModal({socket, setOpenLobby}) {
               marginTop: '20px'
 						}}
 					>
+						<TextField placeholder='Enter your name' onChange={(e) => setName1(e.target.value)} fullWidth id="fullWidth" />
+						<div className='mt-3'></div>
 						<TextField placeholder='Enter Room ID' onChange={(e) => setRoomId(e.target.value)} fullWidth id="fullWidth" />
 					</Box>
 					<div className='mt-2 text-center'>
