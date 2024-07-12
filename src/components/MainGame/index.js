@@ -6,6 +6,7 @@ import questions from '../../../data/main-questions.json';
  * @see https://v0.dev/t/34S4svLpjzX
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+
 export default function MainGame({socket, allPlayers}) {
   const [seconds, setSeconds] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -13,7 +14,25 @@ export default function MainGame({socket, allPlayers}) {
   const audioRef = useRef(null);
   const [questionCount, setQuestionCount] = useState(1);
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [gameOver, setGameOver] = useState(false)
 
+  const stages = [
+    { id: 15, amount: "5 Crore" },
+    { id: 14, amount: "1 Crore" },
+    { id: 13, amount: "50,00,000" },
+    { id: 12, amount: "25,00,000" },
+    { id: 11, amount: "12,50,000" },
+    { id: 10, amount: "6,40,000" },
+    { id: 9, amount: "3,20,000" },
+    { id: 8, amount: "1,60,000" },
+    { id: 7, amount: "80,000" },
+    { id: 6, amount: "40,000" },
+    { id: 5, amount: "20,000" },
+    { id: 4, amount: "10,000" },
+    { id: 3, amount: "5,000" },
+    { id: 2, amount: "2,000" },
+    { id: 1, amount: "1,000" }
+];
   const handleButtonClick = () => {
     setPopupVisible(true);
   };
@@ -40,6 +59,7 @@ export default function MainGame({socket, allPlayers}) {
 
   useEffect(() => {
     // Exit early when timer reaches 0
+    if(gameOver) return;
     if (seconds === 0){
       nextQuestion()
       return;
@@ -68,33 +88,43 @@ export default function MainGame({socket, allPlayers}) {
   }
 
   const resetOptions = (i) => {
-    document.getElementById("option"+i).classList.remove("bg-red-500")
-    document.getElementById("option"+i).classList.remove("bg-green-500")
-    document.getElementById("option"+i).classList.add("bg-purple-700")
-    document.getElementById("option"+i).classList.add("hover:bg-purple-500")
+    document.getElementById("options"+i).classList.remove("bg-red-500")
+    document.getElementById("options"+i).classList.remove("bg-green-500")
+    document.getElementById("options"+i).classList.add("bg-purple-700")
+    document.getElementById("options"+i).classList.add("hover:bg-purple-500")
   }
 
   const handleOptionClick = (option, question) => {
     if(option.split(":")[0] === question.correct_answer){
-      document.getElementById("option"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
-      document.getElementById("option"+option.split(":")[0]).classList.remove("bg-purple-700")
-      document.getElementById("option"+option.split(":")[0]).classList.add("bg-green-500")
+      document.getElementById("options"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
+      document.getElementById("options"+option.split(":")[0]).classList.remove("bg-purple-700")
+      document.getElementById("options"+option.split(":")[0]).classList.add("bg-green-700")
+      document.getElementById("options"+option.split(":")[0]).classList.add("test1")
       // socket.emit("fff-response", currentPlayer, responseTime, true, questionCount)
     } else {
-      document.getElementById("option"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
-      document.getElementById("option"+option.split(":")[0]).classList.add("bg-red-500")
-      document.getElementById("option"+option.split(":")[0]).classList.remove("bg-purple-700")
-      document.getElementById("option"+question.answer.split(":")[0]).classList.add("bg-green-700")
-      // socket.emit("fff-response", currentPlayer, responseTime, false, questionCount)
-    }
-    resetOptions(option.split(":")[0])
-    if(questionCount === 10){
-      setModalBody("Round Over! Check Leaderboard for your score.")
-      setPopupVisible(true);
+      document.getElementById("options"+option.split(":")[0]).classList.remove("hover:bg-purple-500")
+      document.getElementById("options"+option.split(":")[0]).classList.add("bg-red-500")
+      document.getElementById("options"+option.split(":")[0]).classList.remove("bg-purple-700")
+      document.getElementById("options"+question.answer.split(":")[0]).classList.add("bg-green-700")
+      document.getElementById("options"+option.split(":")[0]).classList.add("test2")
       setSeconds(0)
-    } else {
-      nextQuestion()
+      setGameOver(true)
+      setModalBody("Game Over. Your bank will be credited with the winning amount.")
+      setPopupVisible(true)
     }
+    setTimeout(() => {
+      if(gameOver === true){
+        return;
+      }
+      resetOptions(option.split(":")[0])
+      if(questionCount === 10){
+        setModalBody("Round Over! Check Leaderboard for your score.")
+        setPopupVisible(true);
+        setSeconds(0)
+      } else {
+        nextQuestion()
+      }
+    }, 2000)
   }
 
   return (
@@ -107,70 +137,12 @@ export default function MainGame({socket, allPlayers}) {
           <TrophyIcon className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <div className="flex justify-between">
-            <span>16</span>
-            <span>7 Crore</span>
-          </div>
-          <div className="flex justify-between">
-            <span>15</span>
-            <span>1 Crore</span>
-          </div>
-          <div className="flex justify-between">
-            <span>14</span>
-            <span>50,00,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>13</span>
-            <span>25,00,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>12</span>
-            <span>12,50,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>11</span>
-            <span>6,40,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>10</span>
-            <span>3,20,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>9</span>
-            <span>1,60,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>8</span>
-            <span>80,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>7</span>
-            <span>40,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>6</span>
-            <span>20,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>5</span>
-            <span>10,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>4</span>
-            <span>5,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>3</span>
-            <span>3,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>2</span>
-            <span>2,000</span>
-          </div>
-          <div className="flex justify-between">
-            <span>1</span>
-            <span>1,000</span>
-          </div>
+          {stages.map(stage => (
+            <div key={stage.id} className={`flex justify-between px-2 ${stage.id === questionCount ? " border-2" : ""}`}>
+              <span>{stage.id}</span>
+              <span>{stage.amount}</span>
+            </div>
+          ))}
         </div>
       </div>
       <div className="flex-1 p-4">
@@ -197,25 +169,12 @@ export default function MainGame({socket, allPlayers}) {
           </div>
           <div className="grid grid-cols-2 gap-4 mb-4">
             {currentQuestion.options.map(option => (
-              <button id={"option"+option.split(":")[0]} className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500" onClick={() => handleOptionClick(option, currentQuestion)}>
+              <button id={"options"+option.split(":")[0]} className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500" onClick={() => handleOptionClick(option, currentQuestion)}>
                 <span className="font-bold">{option.split(":")[0]}:</span> {option.split(":")[1]}
               </button>
             ))}
-            {/* <button className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500">
-              <span className="font-bold">{currentQuestion.options[1].split(":")[0]}:</span> {currentQuestion.options[1].split(":")[1]}
-            </button>
-            <button className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500">
-              <span className="font-bold">{currentQuestion.options[2].split(":")[0]}:</span> {currentQuestion.options[2].split(":")[1]}
-            </button>
-            <button className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500">
-              <span className="font-bold">{currentQuestion.options[3].split(":")[0]}:</span> {currentQuestion.options[3].split(":")[1]}
-            </button> */}
           </div>
         </>}
-        {/* <div className="flex justify-center gap-4">
-          <button className="px-8 py-4 text-white bg-yellow-500 rounded-lg">Lock</button>
-          <button className="px-8 py-4 text-white bg-red-500 rounded-lg">Quit</button>
-        </div> */}
       </div>
       {isPopupVisible && <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg">
