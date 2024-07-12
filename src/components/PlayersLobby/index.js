@@ -31,7 +31,6 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
 	}
 
 	const handleGameStartClick = () => {
-		document.getElementById("bg-video").style.display = "none";
 		socket.emit("start-game", allPlayers.find(player => player.socketId === socket.id));
 	}
 
@@ -46,23 +45,27 @@ export default function PlayersLobby({ socket, allPlayers, openLobby, setOpenLob
 	const DrawerList = (
 		<Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
 			<Box sx={{position: "absolute", top: 0,  height: '100%', width: '100%', padding: '36px', borderRight: '1px solid #ccc', bgcolor: '#f0f0f0' }}>
-      <Typography variant="h5">Game Rules</Typography>
-      <ul>
-		<li>1. <b sx={{ bgcolor: 'red' }}>Important : </b>Do not refresh the page.</li>
-        <li>2. For starting the game, enter your name and the ID provided by the host.</li>
-		<li>3. Eligibility: Players must register with their real names.</li>
-        <li>4. Game Structure: The game consists of multiple-choice questions. Each question will have four options, and only one is correct.</li>
-        <li>5. Lifelines: Players are provided with lifelines that can be used at any point in the game:
-          <ul>
-            <li>1. 50:50: Eliminates two incorrect options.</li>
-            <li>2. Ask the Audience: Shows the audience's opinion on the answer.</li>
-            <li>3. Flip the Question: Allows the player to skip the current question and get a new one.</li>
-          </ul>
-          Each lifeline can be used only once.
-        </li>
-        <li>Winning and Prizes: Correctly answering all questions will make the player the winner. Prizes will be awarded based on the number of correct answers. The prize structure will be predefined and visible to all players before starting the game.</li>
-        <li>Technical Issues: In case of any technical issues, players should contact the support team immediately. If a player gets disconnected, they can rejoin the game if the issue is resolved within a certain timeframe.</li>
-        </ul>
+      	<Typography variant="h5">Game Rules</Typography>
+				<ul class="list-decimal ml-8 space-y-4">
+					<li class="font-bold p-2">
+							Important: Do not refresh the page.
+					</li>
+					<li>
+							For starting the game, enter your name and the ID provided by the host.
+					</li>
+					<li>
+							Eligibility: Players must register with their real names.
+					</li>
+					<li>
+							Game Structure: The game consists of multiple-choice questions. Each question will have four options, and only one is correct.
+					</li>
+					<li>
+							Winning and Prizes: Correctly answering all questions will make the player the winner. Prizes will be awarded based on the number of correct answers. The prize structure will be predefined and visible to all players before starting the game.
+					</li>
+					<li>
+							Technical Issues: In case of any technical issues, players should contact the support team immediately. If a player gets disconnected, they can rejoin the game if the issue is resolved within a certain timeframe.
+					</li>
+			</ul>
     </Box>
 		</Box>
 	);

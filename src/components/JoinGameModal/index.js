@@ -65,7 +65,7 @@ export default function JoinGameModal({socket, setOpenLobby}) {
 						className="LogoKBC "
 					/>
 					 </div>
-					 <p className="mt-4 font-bold text-lg   lg:text-2xl align-center">
+					 <p className="font-bold text-lg   lg:text-2xl align-center">
 					 Welcome<br></br> to 
           				</p>
 					<h1 className="text-5xl font-bold text-black sm:text-5xl lg:text-3xl align-center headingKBC">Kaun Banega Crorepati</h1>

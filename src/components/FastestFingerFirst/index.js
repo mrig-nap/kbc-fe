@@ -4,6 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 import questions from '../../../data/questions.json';
 import { Button } from '@mui/material';
 
+const style = {
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	width: 400,
+	bgcolor: 'background.paper',
+	border: '2px solid #000',
+	boxShadow: 24,
+	p: 4,
+};
+
 export default function BasicModal({socket, allPlayers}) {
 	const [name, setName] = useState("")
 	const [open, setOpen] = useState(true);
@@ -34,6 +46,7 @@ export default function BasicModal({socket, allPlayers}) {
     setResult(newResponse.find(res => res.player.socketId === socket.id))
   })
 
+  console.log(result)
 
   const startGame = () => {
     setCurrentQuestion(questions[Math.floor(Math.random() * questions.length)])
@@ -135,7 +148,7 @@ export default function BasicModal({socket, allPlayers}) {
   const handleNextRoundClick = () => {
     socket.emit("next-round", currentPlayer?.roomID);
     document.getElementById("game-screen").style.display = "none";
-    document.getElementById("main-game-screen").style.display = "flex";
+    document.getElementById("game-screen2").style.display = "flex";
   }
 
 	return (
@@ -177,6 +190,7 @@ export default function BasicModal({socket, allPlayers}) {
             <span className="text-2xl font-bold text-white">{seconds}</span>
           </div>
         </div>
+        
         <audio
           style={{display: "none"}}
           ref={audioRef}
@@ -191,7 +205,7 @@ export default function BasicModal({socket, allPlayers}) {
           </div>
           <div className="grid grid-cols-2 gap-4 mb-4">
             {currentQuestion.options.map((option, index) => (
-              <button key={index} id={"option"+option.split(":")[0]} className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500" onClick={() => handleOptionClick(option, currentQuestion)}>
+              <button key={index} id={"option"+option.split(":")[0]} className="p-4 text-left text-white bg-purple-700 rounded-lg hover:bg-purple-500 btnHOver" onClick={() => handleOptionClick(option, currentQuestion)}>
                 <span className="font-bold">{option.split(":")[0]}:</span> {option.split(":")[1]}
               </button>
             ))}
@@ -201,8 +215,9 @@ export default function BasicModal({socket, allPlayers}) {
       {isPopupVisible && <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold mb-4">{modalBody}</h2>
+        
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="btnColor bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 "
           onClick={() => setPopupVisible(false)}
         >
           Okay

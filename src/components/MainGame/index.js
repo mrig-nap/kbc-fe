@@ -12,7 +12,6 @@ export default function MainGame({socket, allPlayers}) {
   const [modalBody, setModalBody] = useState("Are you ready ?")
   const audioRef = useRef(null);
   const [questionCount, setQuestionCount] = useState(1);
-
   const [isPopupVisible, setPopupVisible] = useState(false);
 
   const handleButtonClick = () => {
@@ -25,6 +24,7 @@ export default function MainGame({socket, allPlayers}) {
   };
 
   socket.on("next-round-started", () => {
+    console.log("next round started")
     startGame()
   })
 
@@ -55,7 +55,7 @@ export default function MainGame({socket, allPlayers}) {
   }, [seconds]); // Re-run the effect when seconds state changes
 
   useEffect(() => {
-    document.getElementById("main-game-screen").style.display = "none";
+    document.getElementById("game-screen").style.display = "none";
     setCurrentQuestion(questions[Math.floor(Math.random() * questions.length)])
   }, [])
 
@@ -98,7 +98,7 @@ export default function MainGame({socket, allPlayers}) {
   }
 
   return (
-    <div id="main-game-screen" className="flex min-h-screen bg-gray-100">
+    <div id="game-screen2" className="flex min-h-screen bg-gray-100 hidden">
       <div className="w-64 p-4 bg-purple-700 text-white">
         <div className="flex justify-around mb-4">
           <UsersIcon className="w-8 h-8" />
